@@ -27,14 +27,6 @@ public:
     static const int GetArraySize() { return arraySize; }
     int* GetArray() { return array; }
 
-private:
-    //static void writeToFile(const std::string& filename, const std::string& content);
 };
 
 #endif
-
-void generateRandomArray(Search& search);
-void insertionSort(Search& search);
-bool validateSearchValue(String^ input);
-int checkValueInArray(Search& search, int searchValue);
-void writeToFile(const std::string& filename, RichTextBox^ richTextBox1, RichTextBox^ richTextBox2);
