@@ -1,18 +1,11 @@
 #include "Search.h"
+#include "MyForm.h"
 #include <fstream>
 #include <ctime>
+#include <string>
+#include <msclr/marshal_cppstd.h>
 
-//extern const int arraySize = 10;
-//extern int array[arraySize];
-
-Search::Search() {
-    // Конструктор для ініціалізації масиву
-}
-
-Search::~Search() {
-    // Деструктор для звільнення пам'яті
-}
-
+using namespace System::Runtime::InteropServices;
 
 int Search::sequentialSearch(int value) {
     for (int i = 0; i < arraySize; ++i) {
@@ -36,8 +29,8 @@ int Search::fibonacciSearch(int value) {
 
     int offset = -1;
     while (fib > 1) {
-        int i = std::min(offset + fib2, arraySize - 1);
-
+        int i = (((offset + fib2) < (arraySize - 1)) ? (offset + fib2) : (arraySize - 1));
+        //int i = 0;
         if (array[i] < value) {
             fib = fib1;
             fib1 = fib2;
@@ -115,17 +108,6 @@ int Search::hashSearch(int key) {
 
 
 
-void Search::writeToFile(const std::string& filename, const std::string& content) {
-    std::ofstream file(filename);
-    if (file.is_open()) {
-        file << content;
-        file.close();
-    }
-}
-
-
-
-
 // Функція для генерації масиву випадкових чисел
 void generateRandomArray(Search& search) {
     srand(static_cast<unsigned int>(time(nullptr)));
@@ -148,3 +130,44 @@ void insertionSort(Search& search) {
         search.array[j + 1] = key;
     }
 }
+
+
+
+bool validateSearchValue(std::string s)
+{
+    bool hasDecimalPoint = false;
+    bool hasMinus = false;
+
+    for (char c : s) {
+        if (iswdigit(c)) {
+            continue;
+        }
+        else if (c == '-' && !hasMinus)
+        {
+            hasMinus = true;
+        }
+        else if (((c == '.' || c == ',') && !hasDecimalPoint)) {
+            hasDecimalPoint = true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+std::string& ConvertString(System::String^ input)
+{
+    // Конвертація з System::String^ в std::string
+    return msclr::interop::marshal_as<std::string>(input->ToString());
+}
+
+System::String^ ConvertString(std::string& ss, System::String^ s)
+{
+    s = gcnew System::String(ss.c_str());
+    return s;
+}
+
+
+

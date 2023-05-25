@@ -41,6 +41,8 @@ namespace KURSOVANEW {
 	private: System::Windows::Forms::Button^ buttonFind;
 	private: System::Windows::Forms::TextBox^ textBox;
 	private: System::Windows::Forms::RichTextBox^ richTextBox2;
+	private: System::Windows::Forms::MenuStrip^ menuStrip1;
+	private: System::Windows::Forms::ToolStripMenuItem^ ïðîÏðîãðàìóToolStripMenuItem;
 
 	private:
 		/// <summary>
@@ -61,13 +63,16 @@ namespace KURSOVANEW {
 			this->buttonFind = (gcnew System::Windows::Forms::Button());
 			this->textBox = (gcnew System::Windows::Forms::TextBox());
 			this->richTextBox2 = (gcnew System::Windows::Forms::RichTextBox());
+			this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
+			this->ïðîÏðîãðàìóToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->menuStrip1->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// button1
 			// 
 			this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->button1->Location = System::Drawing::Point(46, 75);
+			this->button1->Location = System::Drawing::Point(103, 75);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(231, 108);
 			this->button1->TabIndex = 0;
@@ -77,11 +82,14 @@ namespace KURSOVANEW {
 			// 
 			// richTextBox1
 			// 
-			this->richTextBox1->Location = System::Drawing::Point(18, 230);
+			this->richTextBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->richTextBox1->Location = System::Drawing::Point(75, 230);
 			this->richTextBox1->Name = L"richTextBox1";
 			this->richTextBox1->Size = System::Drawing::Size(307, 230);
 			this->richTextBox1->TabIndex = 1;
 			this->richTextBox1->Text = L"";
+		//	this->richTextBox1->TextChanged += gcnew System::EventHandler(this, &MyForm::richTextBox1_TextChanged);
 			// 
 			// labelEnter
 			// 
@@ -117,25 +125,48 @@ namespace KURSOVANEW {
 			// 
 			// richTextBox2
 			// 
+			this->richTextBox2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
 			this->richTextBox2->Location = System::Drawing::Point(518, 230);
 			this->richTextBox2->Name = L"richTextBox2";
 			this->richTextBox2->Size = System::Drawing::Size(307, 230);
 			this->richTextBox2->TabIndex = 20;
 			this->richTextBox2->Text = L"";
 			// 
+			// menuStrip1
+			// 
+			this->menuStrip1->ImageScalingSize = System::Drawing::Size(20, 20);
+			this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->ïðîÏðîãðàìóToolStripMenuItem });
+			this->menuStrip1->Location = System::Drawing::Point(0, 0);
+			this->menuStrip1->Name = L"menuStrip1";
+			this->menuStrip1->Size = System::Drawing::Size(936, 28);
+			this->menuStrip1->TabIndex = 21;
+			this->menuStrip1->Text = L"menuStrip1";
+			// 
+			// ïðîÏðîãðàìóToolStripMenuItem
+			// 
+			this->ïðîÏðîãðàìóToolStripMenuItem->Name = L"ïðîÏðîãðàìóToolStripMenuItem";
+			this->ïðîÏðîãðàìóToolStripMenuItem->Size = System::Drawing::Size(122, 24);
+			this->ïðîÏðîãðàìóToolStripMenuItem->Text = L"ïðî ïðîãðàìó";
+			this->ïðîÏðîãðàìóToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::ïðîÏðîãðàìóToolStripMenuItem_Click);
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(966, 536);
+			this->ClientSize = System::Drawing::Size(936, 501);
 			this->Controls->Add(this->richTextBox2);
 			this->Controls->Add(this->buttonFind);
 			this->Controls->Add(this->textBox);
 			this->Controls->Add(this->labelEnter);
 			this->Controls->Add(this->richTextBox1);
 			this->Controls->Add(this->button1);
+			this->Controls->Add(this->menuStrip1);
+			this->MainMenuStrip = this->menuStrip1;
 			this->Name = L"MyForm";
 			this->Text = L"MyForm";
+			this->menuStrip1->ResumeLayout(false);
+			this->menuStrip1->PerformLayout();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -143,6 +174,11 @@ namespace KURSOVANEW {
 #pragma endregion
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void buttonFind_Click(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void ïðîÏðîãðàìóToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
+
 
 };
+
+
 }
+
