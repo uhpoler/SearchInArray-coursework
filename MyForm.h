@@ -86,10 +86,11 @@ namespace KURSOVANEW {
 				static_cast<System::Byte>(204)));
 			this->richTextBox1->Location = System::Drawing::Point(75, 230);
 			this->richTextBox1->Name = L"richTextBox1";
+			this->richTextBox1->ReadOnly = true;
 			this->richTextBox1->Size = System::Drawing::Size(307, 230);
 			this->richTextBox1->TabIndex = 1;
 			this->richTextBox1->Text = L"";
-		//	this->richTextBox1->TextChanged += gcnew System::EventHandler(this, &MyForm::richTextBox1_TextChanged);
+			this->richTextBox1->TextChanged += gcnew System::EventHandler(this, &MyForm::richTextBox1_TextChanged);
 			// 
 			// labelEnter
 			// 
@@ -129,9 +130,11 @@ namespace KURSOVANEW {
 				static_cast<System::Byte>(204)));
 			this->richTextBox2->Location = System::Drawing::Point(518, 230);
 			this->richTextBox2->Name = L"richTextBox2";
+			this->richTextBox2->ReadOnly = true;
 			this->richTextBox2->Size = System::Drawing::Size(307, 230);
 			this->richTextBox2->TabIndex = 20;
 			this->richTextBox2->Text = L"";
+			this->richTextBox2->TextChanged += gcnew System::EventHandler(this, &MyForm::richTextBox2_TextChanged);
 			// 
 			// menuStrip1
 			// 
@@ -175,8 +178,8 @@ namespace KURSOVANEW {
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void buttonFind_Click(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void ïðîÏðîãðàìóToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
-
-
+	private: System::Void richTextBox1_TextChanged(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void richTextBox2_TextChanged(System::Object^ sender, System::EventArgs^ e);
 };
 
 

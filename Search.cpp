@@ -1,12 +1,8 @@
 #include "Search.h"
-#include "MyForm.h"
-#include <fstream>
-#include <ctime>
-#include <string>
-#include <msclr/marshal_cppstd.h>
 
-using namespace System::Runtime::InteropServices;
 
+
+//функція послідовного пошуку
 int Search::sequentialSearch(int value) {
     for (int i = 0; i < arraySize; ++i) {
         if (array[i] == value) {
@@ -16,6 +12,7 @@ int Search::sequentialSearch(int value) {
     return -1;
 }
 
+//функція пошуку методом Фібоначі
 int Search::fibonacciSearch(int value) {
     int fib2 = 0;
     int fib1 = 1;
@@ -30,7 +27,6 @@ int Search::fibonacciSearch(int value) {
     int offset = -1;
     while (fib > 1) {
         int i = (((offset + fib2) < (arraySize - 1)) ? (offset + fib2) : (arraySize - 1));
-        //int i = 0;
         if (array[i] < value) {
             fib = fib1;
             fib1 = fib2;
@@ -54,53 +50,52 @@ int Search::fibonacciSearch(int value) {
     return -1;
 }
 
-
+//функція пошуку інтерполяційним методом
 int Search::interpolationSearch(int value) {
     int low = 0;
     int high = arraySize - 1;
 
     while (low <= high && value >= array[low] && value <= array[high]) {
-        // Використовуємо формулу інтерполяції для знаходження наближеної позиції шуканого елемента
+        //формула інтерполяції для знаходження наближеної позиції шуканого елемента
         int position = low + ((value - array[low]) * (high - low)) / (array[high] - array[low]);
 
         if (array[position] == value) {
-            return position; // Знайдено шуканий елемент
+            return position; 
         }
 
         if (array[position] < value) {
-            low = position + 1; // Шуканий елемент знаходиться в правій половині
+            low = position + 1; 
         }
         else {
-            high = position - 1; // Шуканий елемент знаходиться в лівій половині
+            high = position - 1; 
         }
     }
 
-    return -1; // Шуканий елемент не знайдено
+    return -1; 
 }
 
+//Хеш-функція
 int Search::hashFunction(int value) {
     return value % 1000;
 }
 
+//функція пошуку елементу за допомогою Хеш-функції
 int Search::hashSearch(int key) {
     int hash = hashFunction(key);
     int index = hash;
 
     while (array[index] != key) {
         if (array[index] == -1) {
-            // Елемент не знайдено
             return -1;
         }
 
         index = (index + 1) % arraySize;
 
         if (index == hash) {
-            // Проходження через весь масив, елемент не знайдено
             return -1;
         }
     }
 
-    // Елемент знайдено
     return index;
 }
 
@@ -111,51 +106,31 @@ int Search::hashSearch(int key) {
 // Функція для генерації масиву випадкових чисел
 void generateRandomArray(Search& search) {
     srand(static_cast<unsigned int>(time(nullptr)));
-    for (int i = 0; i < search.arraySize; i++) {
-        search.array[i] = rand();
+    int* arr = search.GetArray();
+    for (int i = 0; i < search.GetArraySize(); i++) {
+        arr[i] = rand();
     }
 }
 
 // Функція для сортування масиву за алгоритмом сортування вставкою
 void insertionSort(Search& search) {
-    for (int i = 1; i < search.arraySize; i++) {
-        int key = search.array[i];
+    int* arr = search.GetArray();
+    for (int i = 1; i < search.GetArraySize(); i++) {
+        int key = arr[i];
         int j = i - 1;
 
-        while (j >= 0 && search.array[j] > key) {
-            search.array[j + 1] = search.array[j];
+        while (j >= 0 && arr[j] > key) {
+            arr[j + 1] = arr[j];
             j--;
         }
 
-        search.array[j + 1] = key;
+        arr[j + 1] = key;
     }
 }
 
 
 
-bool validateSearchValue(std::string s)
-{
-    bool hasDecimalPoint = false;
-    bool hasMinus = false;
 
-    for (char c : s) {
-        if (iswdigit(c)) {
-            continue;
-        }
-        else if (c == '-' && !hasMinus)
-        {
-            hasMinus = true;
-        }
-        else if (((c == '.' || c == ',') && !hasDecimalPoint)) {
-            hasDecimalPoint = true;
-        }
-        else {
-            return false;
-        }
-    }
-
-    return true;
-}
 
 std::string& ConvertString(System::String^ input)
 {
