@@ -103,46 +103,62 @@ int Search::hashSearch(int key) {
 
 
 
-// Функція для генерації масиву випадкових чисел
-void generateRandomArray(Search& search) {
-    srand(static_cast<unsigned int>(time(nullptr)));
-    int* arr = search.GetArray();
-    for (int i = 0; i < search.GetArraySize(); i++) {
-        arr[i] = rand();
+//// Функція для генерації масиву випадкових чисел
+//void generateRandomArray(Search& search) {
+//    srand(static_cast<unsigned int>(time(nullptr)));
+//    int* arr = search.GetArray();
+//    for (int i = 0; i < search.GetArraySize(); i++) {
+//        arr[i] = rand();
+//    }
+//}
+//
+//// Функція для сортування масиву за алгоритмом сортування вставкою
+//void insertionSort(Search& search) {
+//    int* arr = search.GetArray();
+//    for (int i = 1; i < search.GetArraySize(); i++) {
+//        int key = arr[i];
+//        int j = i - 1;
+//
+//        while (j >= 0 && arr[j] > key) {
+//            arr[j + 1] = arr[j];
+//            j--;
+//        }
+//
+//        arr[j + 1] = key;
+//    }
+//}
+
+
+
+
+
+
+//функція запису результатів до файлу
+void FileAditional::writeToFile(const std::string& filename, RichTextBox^ richTextBox1, RichTextBox^ richTextBox2) {
+    std::ofstream file(filename, std::ios::app);
+
+    if (file.is_open()) {
+
+        System::String^ textArray = richTextBox1->Text;
+        System::String^ textResult = richTextBox2->Text;
+
+        std::string convertedTextArray = msclr::interop::marshal_as<std::string>(textArray);
+        std::string convertedTextResult = msclr::interop::marshal_as<std::string>(textResult);
+
+
+        file << "Масив елементів: " << std::endl;
+        file << convertedTextArray << std::endl;
+        file << convertedTextResult << std::endl;
+        file << std::endl;
+
+
+        file.close();
+
     }
-}
-
-// Функція для сортування масиву за алгоритмом сортування вставкою
-void insertionSort(Search& search) {
-    int* arr = search.GetArray();
-    for (int i = 1; i < search.GetArraySize(); i++) {
-        int key = arr[i];
-        int j = i - 1;
-
-        while (j >= 0 && arr[j] > key) {
-            arr[j + 1] = arr[j];
-            j--;
-        }
-
-        arr[j + 1] = key;
+    else {
+        MessageBox::Show("Помилка при відкритті файлу results.txt", "Помилка");
     }
+
+
 }
-
-
-
-
-
-std::string& ConvertString(System::String^ input)
-{
-    // Конвертація з System::String^ в std::string
-    return msclr::interop::marshal_as<std::string>(input->ToString());
-}
-
-System::String^ ConvertString(std::string& ss, System::String^ s)
-{
-    s = gcnew System::String(ss.c_str());
-    return s;
-}
-
-
 

@@ -15,7 +15,7 @@ using namespace System::Windows::Forms;
 
 class Search {
 private:
-    static const int arraySize = 10;
+    static const int arraySize = 1000;
     int array[arraySize];
 public:
    
@@ -27,6 +27,11 @@ public:
     static const int GetArraySize() { return arraySize; }
     int* GetArray() { return array; }
 
+};
+
+class FileAditional : public Search{
+public:
+    void writeToFile(const std::string& filename, RichTextBox^ richTextBox1, RichTextBox^ richTextBox2);
 };
 
 #endif

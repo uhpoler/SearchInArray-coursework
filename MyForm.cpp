@@ -9,8 +9,8 @@ using namespace System::Windows::Forms;
 
 
 
-
-[STAThreadAttribute] //точка входу для форми
+//точка входу для форми
+[STAThreadAttribute]
 void main(array<String^>^ args) {
 	Application::EnableVisualStyles();
 	Application::SetCompatibleTextRenderingDefault(false);
@@ -52,6 +52,7 @@ System::Void KURSOVANEW::MyForm::buttonFind_Click(System::Object^ sender, System
 		return;
 	}
 
+	richTextBox2->Clear();
 	String^ input = textBox->Text;
 		
 
@@ -83,7 +84,8 @@ System::Void KURSOVANEW::MyForm::buttonFind_Click(System::Object^ sender, System
 	}
 			
 		//запис у файл
-		writeToFile("result.txt", richTextBox1, richTextBox2);
+	FileAditional writeToFile;
+	writeToFile.writeToFile("result.txt", richTextBox1, richTextBox2);
 
 
 	return System::Void();

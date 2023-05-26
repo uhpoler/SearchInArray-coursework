@@ -15,4 +15,4 @@ void generateRandomArray(Search& search);
 void insertionSort(Search& search);
 bool validateSearchValue(String^ input);
 int checkValueInArray(Search& search, int searchValue);
-void writeToFile(const std::string& filename, RichTextBox^ richTextBox1, RichTextBox^ richTextBox2);
+//void writeToFile(const std::string& filename, RichTextBox^ richTextBox1, RichTextBox^ richTextBox2);
