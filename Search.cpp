@@ -101,38 +101,6 @@ int Search::hashSearch(int key) {
 
 
 
-
-
-//// Функція для генерації масиву випадкових чисел
-//void generateRandomArray(Search& search) {
-//    srand(static_cast<unsigned int>(time(nullptr)));
-//    int* arr = search.GetArray();
-//    for (int i = 0; i < search.GetArraySize(); i++) {
-//        arr[i] = rand();
-//    }
-//}
-//
-//// Функція для сортування масиву за алгоритмом сортування вставкою
-//void insertionSort(Search& search) {
-//    int* arr = search.GetArray();
-//    for (int i = 1; i < search.GetArraySize(); i++) {
-//        int key = arr[i];
-//        int j = i - 1;
-//
-//        while (j >= 0 && arr[j] > key) {
-//            arr[j + 1] = arr[j];
-//            j--;
-//        }
-//
-//        arr[j + 1] = key;
-//    }
-//}
-
-
-
-
-
-
 //функція запису результатів до файлу
 
 void FileAditional::writeToFile(const std::string& filename, int searchValue) {
@@ -145,7 +113,7 @@ void FileAditional::writeToFile(const std::string& filename, int searchValue) {
 
         // Записуємо елементи масиву у файл
         for (int i = 0; i < size; i++) {
-            file << arr[i] << std::endl;
+            file << arr[i] << " ";
         }
 
 
@@ -155,13 +123,13 @@ void FileAditional::writeToFile(const std::string& filename, int searchValue) {
         int resultInterpolation = interpolationSearch(searchValue);
         int resultHash = hashSearch(searchValue);
 
-        file << "\nРезультат пошуку числа " << searchValue << " різними методами: \n\n" << std::endl;
+        file << "\n\nРезультат пошуку числа " << searchValue << " різними методами: \n" << std::endl;
 
         file << "Послідовний метод: " << resultSequential << std::endl;
         file << "Метод Фібоначчі: " << resultFibonacci << std::endl;
         file << "Інтерполяційний метод: " << resultInterpolation << std::endl;
         file << "Метод Хеш-функції: " << resultHash << std::endl;
-        file << "-------------------------------------------------------------------------" << std::endl;
+   
 
 
         file.close();

@@ -122,7 +122,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AdditionalFunctions.cpp" />
-    <ClCompile Include="kyrsovaBase.cpp" />
     <ClCompile Include="MyForm.cpp" />
     <ClCompile Include="Search.cpp" />
   </ItemGroup>
