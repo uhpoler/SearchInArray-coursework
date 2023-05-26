@@ -134,31 +134,44 @@ int Search::hashSearch(int key) {
 
 
 //функція запису результатів до файлу
-void FileAditional::writeToFile(const std::string& filename, RichTextBox^ richTextBox1, RichTextBox^ richTextBox2) {
+
+void FileAditional::writeToFile(const std::string& filename, int searchValue) {
     std::ofstream file(filename, std::ios::app);
 
     if (file.is_open()) {
 
-        System::String^ textArray = richTextBox1->Text;
-        System::String^ textResult = richTextBox2->Text;
+        int* arr = GetArray();
+        int size = GetArraySize();
 
-        std::string convertedTextArray = msclr::interop::marshal_as<std::string>(textArray);
-        std::string convertedTextResult = msclr::interop::marshal_as<std::string>(textResult);
+        // Записуємо елементи масиву у файл
+        for (int i = 0; i < size; i++) {
+            file << arr[i] << std::endl;
+        }
 
 
-        file << "Масив елементів: " << std::endl;
-        file << convertedTextArray << std::endl;
-        file << convertedTextResult << std::endl;
-        file << std::endl;
+        // Виконуємо пошук і записуємо результати у файл
+        int resultSequential = sequentialSearch(searchValue);
+        int resultFibonacci = fibonacciSearch(searchValue);
+        int resultInterpolation = interpolationSearch(searchValue);
+        int resultHash = hashSearch(searchValue);
+
+        file << "\nРезультат пошуку числа " << searchValue << " різними методами: \n\n" << std::endl;
+
+        file << "Послідовний метод: " << resultSequential << std::endl;
+        file << "Метод Фібоначчі: " << resultFibonacci << std::endl;
+        file << "Інтерполяційний метод: " << resultInterpolation << std::endl;
+        file << "Метод Хеш-функції: " << resultHash << std::endl;
+        file << "-------------------------------------------------------------------------" << std::endl;
 
 
         file.close();
+        MessageBox::Show("Результати збережено у файлі results.txt");
+
 
     }
     else {
         MessageBox::Show("Помилка при відкритті файлу results.txt", "Помилка");
     }
-
 
 }
 

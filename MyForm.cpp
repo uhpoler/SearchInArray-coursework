@@ -80,12 +80,14 @@ System::Void KURSOVANEW::MyForm::buttonFind_Click(System::Object^ sender, System
 			richTextBox2->Text += "Метод Фібоначчі: " + System::Convert::ToString(resultFibonacci) + "\n";
 			richTextBox2->Text += "Інтерполяційний метод: " + System::Convert::ToString(resultInterpolation) + "\n";
 			richTextBox2->Text += "Метод Хеш-функції: " + System::Convert::ToString(resultHash) + "\n\n";
+
+			//запис у файл
+			FileAditional writeToFile;
+			//writeToFile.writeToFile("result.txt", richTextBox1, richTextBox2);
+			writeToFile.writeToFile("result.txt", searchValue);
 		}
 	}
 			
-		//запис у файл
-	FileAditional writeToFile;
-	writeToFile.writeToFile("result.txt", richTextBox1, richTextBox2);
 
 
 	return System::Void();
