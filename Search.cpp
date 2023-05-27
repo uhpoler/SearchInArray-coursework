@@ -128,7 +128,7 @@ void FileAditional::writeToFile(const std::string& filename, int searchValue) {
         file << "Послідовний метод: " << resultSequential << std::endl;
         file << "Метод Фібоначчі: " << resultFibonacci << std::endl;
         file << "Інтерполяційний метод: " << resultInterpolation << std::endl;
-        file << "Метод Хеш-функції: " << resultHash << std::endl;
+        file << "Метод Хеш-функції: " << resultHash << "\n" << std::endl;
    
 
 

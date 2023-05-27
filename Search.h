@@ -24,6 +24,7 @@ public:
     int interpolationSearch( int value);
     int hashFunction(int value);
     int hashSearch(int value);
+
     static const int GetArraySize() { return arraySize; }
     int* GetArray() { return array; }
 

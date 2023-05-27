@@ -89,34 +89,3 @@ int checkValueInArray(Search& search, int searchValue) {
 
 	return searchValue;
 }
-
-
-////функція запису результатів до файлу
-//void writeToFile(const std::string& filename, RichTextBox^ richTextBox1, RichTextBox^ richTextBox2) {
-//	std::ofstream file(filename, std::ios::app);
-//
-//	if (file.is_open()) {
-//
-//		System::String^ textArray = richTextBox1->Text;
-//		System::String^ textResult = richTextBox2->Text;
-//
-//		std::string convertedTextArray = msclr::interop::marshal_as<std::string>(textArray);
-//		std::string convertedTextResult = msclr::interop::marshal_as<std::string>(textResult);
-//
-//
-//		file << "Масив елементів: " << std::endl;
-//		file << convertedTextArray << std::endl;
-//		file << convertedTextResult << std::endl;
-//		file << std::endl;
-//
-//
-//		file.close();
-//
-//	}
-//	else {
-//		MessageBox::Show("Помилка при відкритті файлу results.txt", "Помилка");
-//	}
-//
-//
-//}
-
