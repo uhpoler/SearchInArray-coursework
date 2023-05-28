@@ -2,6 +2,7 @@
 
 
 
+
 //функція послідовного пошуку
 int Search::sequentialSearch(int value) {
     for (int i = 0; i < arraySize; ++i) {
@@ -74,35 +75,58 @@ int Search::interpolationSearch(int value) {
     return -1; 
 }
 
-//Хеш-функція
-int Search::hashFunction(int value) {
-    return value % 1000;
-}
+
 
 //функція пошуку елементу за допомогою Хеш-функції
-int Search::hashSearch(int key) {
-    int hash = hashFunction(key);
-    int index = hash;
+int Search::hashSearch(int key, int* array) {
+    Hashing hashTable(10); // Створення хеш-таблиці з 10 блоків
+    int index = 0;
+    // Додавання елементів до хеш-таблиці
+    for (int i = 0; i < arraySize; i++) {
+        hashTable.insert_key(array[i], i);
 
-    while (array[index] != key) {
-        if (array[index] == -1) {
-            return -1;
-        }
-
-        index = (index + 1) % arraySize;
-
-        if (index == hash) {
-            return -1;
-        }
+        // Пошук числа в хеш-таблиці
+        index = hashTable.searchKey(key, array);
     }
-
     return index;
 }
 
 
 
-//функція запису результатів до файлу
+Hashing::Hashing(int b) {
+    this->hash_bucket = b;
+    hashtable = new std::list<int>[hash_bucket];
+}
 
+// Додає ключ до хеш-таблиці
+void Hashing::insert_key(int key, int value) {
+    int index = hashFunction(key);
+    hashtable[index].push_back(value);
+}
+
+int Hashing::hashFunction(int x) {
+    return (x % hash_bucket);
+}
+
+// Пошук числа в хеш-таблиці
+int Hashing::searchKey(int key, int* arr) {
+    int index = hashFunction(key);
+    std::list<int>::iterator it;
+
+    for (it = hashtable[index].begin(); it != hashtable[index].end(); it++) {
+
+        if (key == arr[*it])
+        {
+            return *it;
+        }
+    }
+
+    return -1;
+}
+
+
+
+//функція запису результатів до файлу
 void FileAditional::writeToFile(const std::string& filename, int searchValue) {
     std::ofstream file(filename, std::ios::app);
 
@@ -121,7 +145,7 @@ void FileAditional::writeToFile(const std::string& filename, int searchValue) {
         int resultSequential = sequentialSearch(searchValue);
         int resultFibonacci = fibonacciSearch(searchValue);
         int resultInterpolation = interpolationSearch(searchValue);
-        int resultHash = hashSearch(searchValue);
+        int resultHash = hashSearch(searchValue, arr);
 
         file << "\n\nРезультат пошуку числа " << searchValue << " різними методами: \n" << std::endl;
 

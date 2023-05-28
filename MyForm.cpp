@@ -72,8 +72,8 @@ System::Void KURSOVANEW::MyForm::buttonFind_Click(System::Object^ sender, System
 			int resultSequential = search.sequentialSearch(searchValue);
 			int resultFibonacci = search.fibonacciSearch(searchValue);
 			int resultInterpolation = search.interpolationSearch(searchValue);
-			int resultHash = search.hashSearch(searchValue);
-
+			int resultHash = search.hashSearch(searchValue, search.GetArray());
+			
 			//вивід результатів
 			richTextBox2->Text += "Результат пошуку числа " + input  + " різними методами: \n\n";
 			richTextBox2->Text += "Послідовний метод: " + System::Convert::ToString(resultSequential) + "\n";
