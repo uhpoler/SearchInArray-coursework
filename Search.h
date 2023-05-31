@@ -20,7 +20,6 @@ class Search {
 protected:
     static const int arraySize = 1000;
     int array[arraySize];
-    int hash_bucket;
 public:
 
     int sequentialSearch(int value);
@@ -31,23 +30,18 @@ public:
     static const int GetArraySize() { return arraySize; }
     int* GetArray() { return array; }
     
+    void writeToFile(const std::string& filename, int searchValue);
 };
 
 
-class Hashing {
-    int hash_bucket; 
-    std::list<int>* hashtable; 
-
+class Hashing : public Search {
+    int hashBucket;
+    std::list<int>* hashTable;
 public:
-    Hashing(int V); 
-    void insert_key(int val, int value);
+    Hashing(int V);
+    void insertKey(int key, int value);
     int hashFunction(int x);
     int searchKey(int key, int* array);
-};
-
-class FileAditional : public Search{
-public:
-    void writeToFile(const std::string& filename, int searchValue);
 };
 
 

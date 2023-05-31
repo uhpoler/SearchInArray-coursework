@@ -21,7 +21,7 @@ void main(array<String^>^ args) {
 
 }
 
-FileAditional search;
+Search search;
 bool isButton1Clicked = false;
 
 //кнопка генерації масиву
