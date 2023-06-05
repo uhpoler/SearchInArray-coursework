@@ -44,48 +44,24 @@ System::Void KURSOVANEW::MyForm::buttonGenerate_Click(System::Object^ sender, Sy
 }
 
 //кнопка пошуку значень, які ввів користувач
-System::Void KURSOVANEW::MyForm::buttonFind_Click(System::Object^ sender, System::EventArgs^ e)
+System::Void KURSOVANEW::MyForm::buttonWriteToFile_Click(System::Object^ sender, System::EventArgs^ e)
 {
+
 
 	if (!isButton1Clicked){
 		MessageBox::Show("Помилка: Спочатку згенеруйте масив!");
 		return;
 	}
 
-	richTextBox2->Clear();
+
 	String^ input = textBox->Text;
-		
+	int searchValue = Convert::ToInt32(input);
 
-	if (validateSearchValue(input)) {
+	//запис у файл
+	search.writeToFile("result.txt", searchValue);
 
-		int searchValue = Convert::ToInt32(input);
-		searchValue = checkValueInArray(search, searchValue);
-
-
-		if (searchValue == 0) {
-			textBox->Clear();
-
-		}
-		else {
-
-			//пошук числа в масиві
-			int resultSequential = search.sequentialSearch(searchValue);
-			int resultFibonacci = search.fibonacciSearch(searchValue);
-			int resultInterpolation = search.interpolationSearch(searchValue);
-			int resultHash = search.hashSearch(searchValue, search.GetArray());
-			
-			//вивід результатів
-			richTextBox2->Text += "Результат пошуку числа " + input  + " різними методами: \n\n";
-			richTextBox2->Text += "Послідовний метод: " + System::Convert::ToString(resultSequential) + "\n";
-			richTextBox2->Text += "Метод Фібоначчі: " + System::Convert::ToString(resultFibonacci) + "\n";
-			richTextBox2->Text += "Інтерполяційний метод: " + System::Convert::ToString(resultInterpolation) + "\n";
-			richTextBox2->Text += "Метод Хеш-функції: " + System::Convert::ToString(resultHash) + "\n\n";
-
-			//запис у файл
-			search.writeToFile("result.txt", searchValue);
-		}
-	}
-			
+	//richTextBox2->Clear();
+	
 
 
 	return System::Void();
@@ -114,6 +90,170 @@ System::Void KURSOVANEW::MyForm::richTextBox2_TextChanged(System::Object^ sender
 
 
 
+
+
+
+
+
+System::Void KURSOVANEW::MyForm::buttonSequential_Click(System::Object^ sender, System::EventArgs^ e)
+{
+
+
+
+	if (!isButton1Clicked) {
+		MessageBox::Show("Помилка: Спочатку згенеруйте масив!");
+		return;
+	}
+
+	//richTextBox2->Clear();
+	String^ input = textBox->Text;
+
+
+	if (validateSearchValue(input)) {
+
+		int searchValue = Convert::ToInt32(input);
+		searchValue = checkValueInArray(search, searchValue);
+
+
+		if (searchValue == 0) {
+			textBox->Clear();
+
+		}
+		else {
+
+			//пошук числа в масиві
+			int resultSequential = search.sequentialSearch(searchValue);
+
+
+			//вивід результатів
+			richTextBox2->Text += "Результат пошуку числа " + input + " різними методами: \n\n";
+			richTextBox2->Text += "Послідовний метод: " + System::Convert::ToString(resultSequential) + "\n";
+
+		}
+	}
+
+
+	return System::Void();
+}
+
+System::Void KURSOVANEW::MyForm::buttonInterpolation_Click(System::Object^ sender, System::EventArgs^ e)
+{
+
+	if (!isButton1Clicked) {
+		MessageBox::Show("Помилка: Спочатку згенеруйте масив!");
+		return;
+	}
+
+	//richTextBox2->Clear();
+	String^ input = textBox->Text;
+
+
+	if (validateSearchValue(input)) {
+
+		int searchValue = Convert::ToInt32(input);
+		searchValue = checkValueInArray(search, searchValue);
+
+
+		if (searchValue == 0) {
+			textBox->Clear();
+
+		}
+		else {
+
+			//пошук числа в масиві
+			int resultInterpolation = search.interpolationSearch(searchValue);
+
+
+			//вивід результатів
+			richTextBox2->Text += "Результат пошуку числа " + input + " різними методами: \n\n";
+			richTextBox2->Text += "Інтерполяційний метод: " + System::Convert::ToString(resultInterpolation) + "\n";
+
+
+		}
+	}
+	return System::Void();
+}
+
+System::Void KURSOVANEW::MyForm::buttonFibonacci_Click(System::Object^ sender, System::EventArgs^ e)
+{
+
+	if (!isButton1Clicked) {
+		MessageBox::Show("Помилка: Спочатку згенеруйте масив!");
+		return;
+	}
+
+	//richTextBox2->Clear();
+	String^ input = textBox->Text;
+
+
+	if (validateSearchValue(input)) {
+
+		int searchValue = Convert::ToInt32(input);
+		searchValue = checkValueInArray(search, searchValue);
+
+
+		if (searchValue == 0) {
+			textBox->Clear();
+
+		}
+		else {
+
+			//пошук числа в масиві
+			int resultFibonacci = search.fibonacciSearch(searchValue);
+
+			//вивід результатів
+			richTextBox2->Text += "Результат пошуку числа " + input + " різними методами: \n\n";
+			richTextBox2->Text += "Метод Фібоначчі: " + System::Convert::ToString(resultFibonacci) + "\n";
+
+
+		}
+	}
+	return System::Void();
+}
+
+System::Void KURSOVANEW::MyForm::buttonHash_Click(System::Object^ sender, System::EventArgs^ e)
+{
+
+	if (!isButton1Clicked) {
+		MessageBox::Show("Помилка: Спочатку згенеруйте масив!");
+		return;
+	}
+
+	//richTextBox2->Clear();
+	String^ input = textBox->Text;
+
+
+	if (validateSearchValue(input)) {
+
+		int searchValue = Convert::ToInt32(input);
+		searchValue = checkValueInArray(search, searchValue);
+
+
+		if (searchValue == 0) {
+			textBox->Clear();
+
+		}
+		else {
+
+			//пошук числа в масиві
+			int resultHash = search.hashSearch(searchValue, search.GetArray());
+
+			//вивід результатів
+			richTextBox2->Text += "Результат пошуку числа " + input + " різними методами: \n\n";
+			richTextBox2->Text += "Метод Хеш-функції: " + System::Convert::ToString(resultHash) + "\n\n";
+
+
+		}
+	}
+	return System::Void();
+}
+
+System::Void KURSOVANEW::MyForm::textBox_TextChanged(System::Object^ sender, System::EventArgs^ e)
+{
+
+	richTextBox2->Clear();
+	return System::Void();
+}
 
 
 

@@ -34,11 +34,21 @@ namespace KURSOVANEW {
 	protected:
 	private: System::Windows::Forms::RichTextBox^ richTextBox1;
 	private: System::Windows::Forms::Label^ labelEnter;
-	private: System::Windows::Forms::Button^ buttonFind;
+	private: System::Windows::Forms::Button^ buttonWriteToFile;
+
 	private: System::Windows::Forms::TextBox^ textBox;
 	private: System::Windows::Forms::RichTextBox^ richTextBox2;
 	private: System::Windows::Forms::MenuStrip^ menuStrip1;
 	private: System::Windows::Forms::ToolStripMenuItem^ AboutProgramToolStripMenuItem;
+	private: System::Windows::Forms::Button^ buttonSequential;
+	private: System::Windows::Forms::Button^ buttonFibonacci;
+	private: System::Windows::Forms::Button^ buttonInterpolation;
+	private: System::Windows::Forms::Button^ buttonHash;
+
+
+
+
+
 
 
 	private:
@@ -52,11 +62,15 @@ namespace KURSOVANEW {
 			this->buttonGenerate = (gcnew System::Windows::Forms::Button());
 			this->richTextBox1 = (gcnew System::Windows::Forms::RichTextBox());
 			this->labelEnter = (gcnew System::Windows::Forms::Label());
-			this->buttonFind = (gcnew System::Windows::Forms::Button());
+			this->buttonWriteToFile = (gcnew System::Windows::Forms::Button());
 			this->textBox = (gcnew System::Windows::Forms::TextBox());
 			this->richTextBox2 = (gcnew System::Windows::Forms::RichTextBox());
 			this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
 			this->AboutProgramToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->buttonSequential = (gcnew System::Windows::Forms::Button());
+			this->buttonFibonacci = (gcnew System::Windows::Forms::Button());
+			this->buttonInterpolation = (gcnew System::Windows::Forms::Button());
+			this->buttonHash = (gcnew System::Windows::Forms::Button());
 			this->menuStrip1->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -64,7 +78,7 @@ namespace KURSOVANEW {
 			// 
 			this->buttonGenerate->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->buttonGenerate->Location = System::Drawing::Point(103, 75);
+			this->buttonGenerate->Location = System::Drawing::Point(62, 48);
 			this->buttonGenerate->Name = L"buttonGenerate";
 			this->buttonGenerate->Size = System::Drawing::Size(231, 108);
 			this->buttonGenerate->TabIndex = 0;
@@ -76,7 +90,7 @@ namespace KURSOVANEW {
 			// 
 			this->richTextBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->richTextBox1->Location = System::Drawing::Point(75, 230);
+			this->richTextBox1->Location = System::Drawing::Point(23, 183);
 			this->richTextBox1->Name = L"richTextBox1";
 			this->richTextBox1->ReadOnly = true;
 			this->richTextBox1->Size = System::Drawing::Size(307, 230);
@@ -89,38 +103,40 @@ namespace KURSOVANEW {
 			this->labelEnter->AutoSize = true;
 			this->labelEnter->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->labelEnter->Location = System::Drawing::Point(533, 75);
+			this->labelEnter->Location = System::Drawing::Point(589, 70);
 			this->labelEnter->Name = L"labelEnter";
 			this->labelEnter->Size = System::Drawing::Size(292, 25);
 			this->labelEnter->TabIndex = 17;
 			this->labelEnter->Text = L"Введіть значення для пошуку:";
 			// 
-			// buttonFind
+			// buttonWriteToFile
 			// 
-			this->buttonFind->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(204)));
-			this->buttonFind->Location = System::Drawing::Point(616, 173);
-			this->buttonFind->Name = L"buttonFind";
-			this->buttonFind->Size = System::Drawing::Size(128, 34);
-			this->buttonFind->TabIndex = 19;
-			this->buttonFind->Text = L"знайти";
-			this->buttonFind->UseVisualStyleBackColor = true;
-			this->buttonFind->Click += gcnew System::EventHandler(this, &MyForm::buttonFind_Click);
+			this->buttonWriteToFile->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Regular,
+				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(204)));
+			this->buttonWriteToFile->Location = System::Drawing::Point(659, 431);
+			this->buttonWriteToFile->Name = L"buttonWriteToFile";
+			this->buttonWriteToFile->Size = System::Drawing::Size(176, 34);
+			this->buttonWriteToFile->TabIndex = 19;
+			this->buttonWriteToFile->Text = L"записати в файл";
+			this->buttonWriteToFile->TextImageRelation = System::Windows::Forms::TextImageRelation::TextBeforeImage;
+			this->buttonWriteToFile->UseVisualStyleBackColor = true;
+			this->buttonWriteToFile->Click += gcnew System::EventHandler(this, &MyForm::buttonWriteToFile_Click);
 			// 
 			// textBox
 			// 
 			this->textBox->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->textBox->Location = System::Drawing::Point(616, 136);
+			this->textBox->Location = System::Drawing::Point(675, 129);
 			this->textBox->Name = L"textBox";
 			this->textBox->Size = System::Drawing::Size(128, 27);
 			this->textBox->TabIndex = 18;
+			this->textBox->TextChanged += gcnew System::EventHandler(this, &MyForm::textBox_TextChanged);
 			// 
 			// richTextBox2
 			// 
 			this->richTextBox2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->richTextBox2->Location = System::Drawing::Point(518, 230);
+			this->richTextBox2->Location = System::Drawing::Point(574, 183);
 			this->richTextBox2->Name = L"richTextBox2";
 			this->richTextBox2->ReadOnly = true;
 			this->richTextBox2->Size = System::Drawing::Size(307, 230);
@@ -145,13 +161,65 @@ namespace KURSOVANEW {
 			this->AboutProgramToolStripMenuItem->Text = L"про програму";
 			this->AboutProgramToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::AboutProgramToolStripMenuItem_Click);
 			// 
+			// buttonSequential
+			// 
+			this->buttonSequential->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Regular,
+				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(204)));
+			this->buttonSequential->Location = System::Drawing::Point(384, 204);
+			this->buttonSequential->Name = L"buttonSequential";
+			this->buttonSequential->Size = System::Drawing::Size(128, 34);
+			this->buttonSequential->TabIndex = 22;
+			this->buttonSequential->Text = L"Послідовний";
+			this->buttonSequential->UseVisualStyleBackColor = true;
+			this->buttonSequential->Click += gcnew System::EventHandler(this, &MyForm::buttonSequential_Click);
+			// 
+			// buttonFibonacci
+			// 
+			this->buttonFibonacci->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->buttonFibonacci->Location = System::Drawing::Point(384, 254);
+			this->buttonFibonacci->Name = L"buttonFibonacci";
+			this->buttonFibonacci->Size = System::Drawing::Size(128, 34);
+			this->buttonFibonacci->TabIndex = 23;
+			this->buttonFibonacci->Text = L"Фібоначчі";
+			this->buttonFibonacci->UseVisualStyleBackColor = true;
+			this->buttonFibonacci->Click += gcnew System::EventHandler(this, &MyForm::buttonFibonacci_Click);
+			// 
+			// buttonInterpolation
+			// 
+			this->buttonInterpolation->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Regular,
+				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(204)));
+			this->buttonInterpolation->Location = System::Drawing::Point(384, 305);
+			this->buttonInterpolation->Name = L"buttonInterpolation";
+			this->buttonInterpolation->Size = System::Drawing::Size(128, 34);
+			this->buttonInterpolation->TabIndex = 24;
+			this->buttonInterpolation->Text = L"Інтерполяційний";
+			this->buttonInterpolation->UseVisualStyleBackColor = true;
+			this->buttonInterpolation->Click += gcnew System::EventHandler(this, &MyForm::buttonInterpolation_Click);
+			// 
+			// buttonHash
+			// 
+			this->buttonHash->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->buttonHash->Location = System::Drawing::Point(384, 360);
+			this->buttonHash->Name = L"buttonHash";
+			this->buttonHash->Size = System::Drawing::Size(128, 34);
+			this->buttonHash->TabIndex = 25;
+			this->buttonHash->Text = L"Хеш-Функції";
+			this->buttonHash->UseVisualStyleBackColor = true;
+			this->buttonHash->Click += gcnew System::EventHandler(this, &MyForm::buttonHash_Click);
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(936, 501);
+			this->Controls->Add(this->buttonHash);
+			this->Controls->Add(this->buttonInterpolation);
+			this->Controls->Add(this->buttonFibonacci);
+			this->Controls->Add(this->buttonSequential);
 			this->Controls->Add(this->richTextBox2);
-			this->Controls->Add(this->buttonFind);
+			this->Controls->Add(this->buttonWriteToFile);
 			this->Controls->Add(this->textBox);
 			this->Controls->Add(this->labelEnter);
 			this->Controls->Add(this->richTextBox1);
@@ -168,10 +236,15 @@ namespace KURSOVANEW {
 		}
 #pragma endregion
 	private: System::Void buttonGenerate_Click(System::Object^ sender, System::EventArgs^ e);
-	private: System::Void buttonFind_Click(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void buttonWriteToFile_Click(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void AboutProgramToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void richTextBox1_TextChanged(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void richTextBox2_TextChanged(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void buttonSequential_Click(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void buttonInterpolation_Click(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void buttonFibonacci_Click(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void buttonHash_Click(System::Object^ sender, System::EventArgs^ e);
+private: System::Void textBox_TextChanged(System::Object^ sender, System::EventArgs^ e);
 };
 
 
