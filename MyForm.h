@@ -165,9 +165,9 @@ namespace KURSOVANEW {
 			// 
 			this->buttonSequential->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(204)));
-			this->buttonSequential->Location = System::Drawing::Point(384, 204);
+			this->buttonSequential->Location = System::Drawing::Point(372, 204);
 			this->buttonSequential->Name = L"buttonSequential";
-			this->buttonSequential->Size = System::Drawing::Size(128, 34);
+			this->buttonSequential->Size = System::Drawing::Size(156, 34);
 			this->buttonSequential->TabIndex = 22;
 			this->buttonSequential->Text = L"Послідовний";
 			this->buttonSequential->UseVisualStyleBackColor = true;
@@ -177,9 +177,9 @@ namespace KURSOVANEW {
 			// 
 			this->buttonFibonacci->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->buttonFibonacci->Location = System::Drawing::Point(384, 254);
+			this->buttonFibonacci->Location = System::Drawing::Point(372, 254);
 			this->buttonFibonacci->Name = L"buttonFibonacci";
-			this->buttonFibonacci->Size = System::Drawing::Size(128, 34);
+			this->buttonFibonacci->Size = System::Drawing::Size(156, 34);
 			this->buttonFibonacci->TabIndex = 23;
 			this->buttonFibonacci->Text = L"Фібоначчі";
 			this->buttonFibonacci->UseVisualStyleBackColor = true;
@@ -189,9 +189,9 @@ namespace KURSOVANEW {
 			// 
 			this->buttonInterpolation->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(204)));
-			this->buttonInterpolation->Location = System::Drawing::Point(384, 305);
+			this->buttonInterpolation->Location = System::Drawing::Point(372, 305);
 			this->buttonInterpolation->Name = L"buttonInterpolation";
-			this->buttonInterpolation->Size = System::Drawing::Size(128, 34);
+			this->buttonInterpolation->Size = System::Drawing::Size(156, 34);
 			this->buttonInterpolation->TabIndex = 24;
 			this->buttonInterpolation->Text = L"Інтерполяційний";
 			this->buttonInterpolation->UseVisualStyleBackColor = true;
@@ -201,9 +201,9 @@ namespace KURSOVANEW {
 			// 
 			this->buttonHash->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->buttonHash->Location = System::Drawing::Point(384, 360);
+			this->buttonHash->Location = System::Drawing::Point(372, 360);
 			this->buttonHash->Name = L"buttonHash";
-			this->buttonHash->Size = System::Drawing::Size(128, 34);
+			this->buttonHash->Size = System::Drawing::Size(156, 34);
 			this->buttonHash->TabIndex = 25;
 			this->buttonHash->Text = L"Хеш-Функції";
 			this->buttonHash->UseVisualStyleBackColor = true;

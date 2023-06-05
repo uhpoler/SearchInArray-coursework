@@ -6,6 +6,7 @@
 // простори імен
 using namespace System;
 using namespace System::Windows::Forms; 
+using namespace System::Drawing;
 
 
 
@@ -33,6 +34,7 @@ System::Void KURSOVANEW::MyForm::buttonGenerate_Click(System::Object^ sender, Sy
 	generateRandomArray(search);
 	insertionSort(search);
 
+
 	//виведення масиву в richTextBox1
 	int* arr = search.GetArray();
 	for (int i = 0; i < search.GetArraySize(); ++i) {
@@ -58,9 +60,9 @@ System::Void KURSOVANEW::MyForm::buttonWriteToFile_Click(System::Object^ sender,
 	int searchValue = Convert::ToInt32(input);
 
 	//запис у файл
-	search.writeToFile("result.txt", searchValue);
+	//search.writeToFile("result.txt", searchValue);
 
-	//richTextBox2->Clear();
+	richTextBox2->Clear();
 	
 
 
@@ -105,7 +107,8 @@ System::Void KURSOVANEW::MyForm::buttonSequential_Click(System::Object^ sender, 
 		return;
 	}
 
-	//richTextBox2->Clear();
+	clearHighlighting(richTextBox1);
+	richTextBox2->Clear();
 	String^ input = textBox->Text;
 
 
@@ -122,12 +125,13 @@ System::Void KURSOVANEW::MyForm::buttonSequential_Click(System::Object^ sender, 
 		else {
 
 			//пошук числа в масиві
-			int resultSequential = search.sequentialSearch(searchValue);
-
+			int resultSequential = search.sequentialSearch(searchValue, richTextBox1);
 
 			//вивід результатів
 			richTextBox2->Text += "Результат пошуку числа " + input + " різними методами: \n\n";
 			richTextBox2->Text += "Послідовний метод: " + System::Convert::ToString(resultSequential) + "\n";
+
+		
 
 		}
 	}
@@ -144,7 +148,8 @@ System::Void KURSOVANEW::MyForm::buttonInterpolation_Click(System::Object^ sende
 		return;
 	}
 
-	//richTextBox2->Clear();
+	clearHighlighting(richTextBox1);
+	richTextBox2->Clear();
 	String^ input = textBox->Text;
 
 
@@ -161,7 +166,7 @@ System::Void KURSOVANEW::MyForm::buttonInterpolation_Click(System::Object^ sende
 		else {
 
 			//пошук числа в масиві
-			int resultInterpolation = search.interpolationSearch(searchValue);
+			int resultInterpolation = search.interpolationSearch(searchValue, richTextBox1);
 
 
 			//вивід результатів
@@ -182,7 +187,9 @@ System::Void KURSOVANEW::MyForm::buttonFibonacci_Click(System::Object^ sender, S
 		return;
 	}
 
-	//richTextBox2->Clear();
+
+	clearHighlighting(richTextBox1);
+	richTextBox2->Clear();
 	String^ input = textBox->Text;
 
 
@@ -199,7 +206,7 @@ System::Void KURSOVANEW::MyForm::buttonFibonacci_Click(System::Object^ sender, S
 		else {
 
 			//пошук числа в масиві
-			int resultFibonacci = search.fibonacciSearch(searchValue);
+			int resultFibonacci = search.fibonacciSearch(searchValue, richTextBox1);
 
 			//вивід результатів
 			richTextBox2->Text += "Результат пошуку числа " + input + " різними методами: \n\n";
@@ -219,7 +226,8 @@ System::Void KURSOVANEW::MyForm::buttonHash_Click(System::Object^ sender, System
 		return;
 	}
 
-	//richTextBox2->Clear();
+	clearHighlighting(richTextBox1);
+	richTextBox2->Clear();
 	String^ input = textBox->Text;
 
 
@@ -236,7 +244,7 @@ System::Void KURSOVANEW::MyForm::buttonHash_Click(System::Object^ sender, System
 		else {
 
 			//пошук числа в масиві
-			int resultHash = search.hashSearch(searchValue, search.GetArray());
+			int resultHash = search.hashSearch(searchValue, search.GetArray(), richTextBox1);
 
 			//вивід результатів
 			richTextBox2->Text += "Результат пошуку числа " + input + " різними методами: \n\n";

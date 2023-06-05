@@ -15,3 +15,4 @@ void generateRandomArray(Search& search);
 void insertionSort(Search& search);
 bool validateSearchValue(String^ input);
 int checkValueInArray(Search& search, int searchValue);
+void clearHighlighting(System::Windows::Forms::RichTextBox^ richTextBox);

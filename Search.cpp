@@ -4,17 +4,35 @@
 
 
 //функція послідовного пошуку
-int Search::sequentialSearch(int value) {
-    for (int i = 0; i < arraySize; ++i) {
+
+int Search::sequentialSearch(int value, RichTextBox^ richTextBox) {
+
+    for (int i = 0; i < arraySize; i++) {
         if (array[i] == value) {
+            richTextBox->SelectionStart = richTextBox->Text->IndexOf(array[i].ToString());
+            richTextBox->SelectionLength = array[i].ToString()->Length;
+            richTextBox->SelectionColor = System::Drawing::Color::Green;
             return i;
+
         }
+        else {
+            richTextBox->SelectionStart = richTextBox->Text->IndexOf(array[i].ToString());
+            richTextBox->SelectionLength = array[i].ToString()->Length;
+            richTextBox->SelectionColor = System::Drawing::Color::Yellow;
+            richTextBox->Refresh();
+            std::this_thread::sleep_for(std::chrono::seconds(1));
+        }
+
+        richTextBox->Refresh(); // Оновлення richTextBox1
     }
-    return -1;
+
 }
 
+
+
+
 //функція пошуку методом Фібоначі
-int Search::fibonacciSearch(int value) {
+int Search::fibonacciSearch(int value, RichTextBox^ richTextBox) {
     int fib2 = 0;
     int fib1 = 1;
     int fib = fib1 + fib2;
@@ -28,31 +46,60 @@ int Search::fibonacciSearch(int value) {
     int offset = -1;
     while (fib > 1) {
         int i = (((offset + fib2) < (arraySize - 1)) ? (offset + fib2) : (arraySize - 1));
+
+        richTextBox->SelectionStart = richTextBox->Text->IndexOf(array[i].ToString());
+        richTextBox->SelectionLength = array[i].ToString()->Length;
+        richTextBox->SelectionColor = System::Drawing::Color::Yellow;
+        std::this_thread::sleep_for(std::chrono::seconds(1));
+
         if (array[i] < value) {
+            richTextBox->SelectionStart = richTextBox->Text->IndexOf(array[i].ToString());
+            richTextBox->SelectionLength = array[i].ToString()->Length;
+            richTextBox->SelectionColor = System::Drawing::Color::Yellow;
+
             fib = fib1;
             fib1 = fib2;
             fib2 = fib - fib1;
             offset = i;
         }
         else if (array[i] > value) {
+            richTextBox->SelectionStart = richTextBox->Text->IndexOf(array[i].ToString());
+            richTextBox->SelectionLength = array[i].ToString()->Length;
+            richTextBox->SelectionColor = System::Drawing::Color::Yellow;
+ 
+
             fib = fib2;
             fib1 = fib1 - fib2;
             fib2 = fib - fib1;
         }
         else {
+            richTextBox->SelectionStart = richTextBox->Text->IndexOf(array[i].ToString());
+            richTextBox->SelectionLength = array[i].ToString()->Length;
+            richTextBox->SelectionColor = System::Drawing::Color::Green;
+
             return i;
         }
+
+        richTextBox->Refresh();
     }
 
     if (fib1 == 1 && array[offset + 1] == value) {
+        
+        richTextBox->SelectionStart = richTextBox->Text->IndexOf(array[offset + 1].ToString());
+        richTextBox->SelectionLength = array[offset + 1].ToString()->Length;
+        richTextBox->SelectionColor = System::Drawing::Color::Green;
+        richTextBox->Refresh();
         return offset + 1;
     }
 
     return -1;
 }
 
+
+
+
 //функція пошуку інтерполяційним методом
-int Search::interpolationSearch(int value) {
+int Search::interpolationSearch(int value, RichTextBox^ richTextBox) {
     int low = 0;
     int high = arraySize - 1;
 
@@ -60,21 +107,51 @@ int Search::interpolationSearch(int value) {
         //формула інтерполяції для знаходження наближеної позиції шуканого елемента
         int position = low + ((value - array[low]) * (high - low)) / (array[high] - array[low]);
 
+        richTextBox->SelectionStart = richTextBox->Text->IndexOf(array[low].ToString());
+        richTextBox->SelectionLength = array[high].ToString()->Length;
+        richTextBox->SelectionColor = System::Drawing::Color::Yellow;
+        richTextBox->Refresh();
+        std::this_thread::sleep_for(std::chrono::seconds(1));
+
         if (array[position] == value) {
+            richTextBox->SelectionStart = richTextBox->Text->IndexOf(array[position].ToString());
+            richTextBox->SelectionLength = array[position].ToString()->Length;
+            richTextBox->SelectionColor = System::Drawing::Color::Green;
+            richTextBox->Refresh();
+            std::this_thread::sleep_for(std::chrono::seconds(1));
+
             return position; 
         }
 
+
+
         if (array[position] < value) {
+            richTextBox->SelectionStart = richTextBox->Text->IndexOf(array[position].ToString());
+            richTextBox->SelectionLength = array[position].ToString()->Length;
+            richTextBox->SelectionColor = System::Drawing::Color::Yellow;
+            richTextBox->Refresh();
+            std::this_thread::sleep_for(std::chrono::seconds(1));
+
             low = position + 1; 
         }
         else {
+            richTextBox->SelectionStart = richTextBox->Text->IndexOf(array[position].ToString());
+            richTextBox->SelectionLength = array[position].ToString()->Length;
+            richTextBox->SelectionColor = System::Drawing::Color::Yellow;
+            richTextBox->Refresh();
+            std::this_thread::sleep_for(std::chrono::seconds(1));
+
             high = position - 1; 
+
+
         }
+       
     }
 
     return -1; 
 }
 
+/*
 //функція запису результатів до файлу
 void Search::writeToFile(const std::string& filename, int searchValue) {
     std::ofstream file(filename, std::ios::app);
@@ -113,20 +190,36 @@ void Search::writeToFile(const std::string& filename, int searchValue) {
     }
 
 }
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 //функція пошуку елементу за допомогою Хеш-функції
-int Search::hashSearch(int key, int* array) {
+int Search::hashSearch(int key, int* array, RichTextBox^ richTextBox) {
     Hashing hashTable(10); // Створення хеш-таблиці з 10 блоків
     int index = 0;
     // Додавання елементів до хеш-таблиці
     for (int i = 0; i < arraySize; i++) {
-        hashTable.insertKey(array[i], i);
+        hashTable.insertKey(array[i], i, richTextBox);
 
         // Пошук числа в хеш-таблиці
-        index = hashTable.searchKey(key, array);
+        index = hashTable.searchKey(key, array, richTextBox);
     }
+
+
     return index;
 }
 
@@ -137,7 +230,7 @@ Hashing::Hashing(int b) {
 }
 
 //функція, яка додає ключ до хеш-таблиці
-void Hashing::insertKey(int key, int value) {
+void Hashing::insertKey(int key, int value, RichTextBox^ richTextBox) {
     int index = hashFunction(key);
     hashTable[index].push_back(value);
 }
@@ -148,14 +241,25 @@ int Hashing::hashFunction(int x) {
 }
 
 // Пошук числа в хеш-таблиці
-int Hashing::searchKey(int key, int* arr) {
+int Hashing::searchKey(int key, int* arr, RichTextBox^ richTextBox) {
     int index = hashFunction(key);
     std::list<int>::iterator it;
 
     for (it = hashTable[index].begin(); it != hashTable[index].end(); it++) {
+        richTextBox->SelectionStart = richTextBox->Text->IndexOf(arr[*it].ToString());
+        richTextBox->SelectionLength = arr[*it].ToString()->Length;
+        richTextBox->SelectionColor = System::Drawing::Color::Yellow;
+        richTextBox->Refresh(); 
+       // std::this_thread::sleep_for(std::chrono::seconds(1));
 
         if (key == arr[*it])
         {
+
+            richTextBox->SelectionStart = richTextBox->Text->IndexOf(arr[index].ToString());
+            richTextBox->SelectionLength = array[*it].ToString()->Length;
+            richTextBox->SelectionColor = System::Drawing::Color::Green;
+            richTextBox->Refresh();
+
             return *it;
         }
     }

@@ -5,9 +5,19 @@
 void generateRandomArray(Search& search) {
 	srand(static_cast<unsigned int>(time(nullptr)));
 	int* arr = search.GetArray();
+	bool* used = new bool[search.GetArraySize()] { false };
+
 	for (int i = 0; i < search.GetArraySize(); i++) {
-		arr[i] = rand();
+		int randomNumber;
+		do {
+			randomNumber = rand();
+		} while (used[randomNumber % search.GetArraySize()]);
+
+		arr[i] = randomNumber;
+		used[randomNumber % search.GetArraySize()] = true;
 	}
+
+	delete[] used;
 }
 
 // Функція для сортування масиву за алгоритмом сортування вставкою
@@ -88,4 +98,11 @@ int checkValueInArray(Search& search, int searchValue) {
 	} while (!validValue);
 
 	return searchValue;
+}
+
+
+void clearHighlighting(System::Windows::Forms::RichTextBox^ richTextBox) {
+	richTextBox->SelectionStart = 0;
+	richTextBox->SelectionLength = richTextBox->Text->Length;
+	richTextBox->SelectionColor = System::Drawing::Color::Black;
 }
