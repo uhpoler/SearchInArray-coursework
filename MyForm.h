@@ -9,24 +9,18 @@ namespace KURSOVANEW {
 	using namespace System::Data;
 	using namespace System::Drawing;
 
-	/// <summary>
-	/// Сводка для MyForm
-	/// </summary>
+	
 	public ref class MyForm : public System::Windows::Forms::Form
 	{
 	public:
 		MyForm(void)
 		{
 			InitializeComponent();
-			//
-			//TODO: добавьте код конструктора
-			//
+		
 		}
 
 	protected:
-		/// <summary>
-		/// Освободить все используемые ресурсы.
-		/// </summary>
+		
 		~MyForm()
 		{
 			if (components)
@@ -34,7 +28,9 @@ namespace KURSOVANEW {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::Button^ button1;
+	private: System::Windows::Forms::Button^ buttonGenerate;
+	protected:
+
 	protected:
 	private: System::Windows::Forms::RichTextBox^ richTextBox1;
 	private: System::Windows::Forms::Label^ labelEnter;
@@ -42,43 +38,39 @@ namespace KURSOVANEW {
 	private: System::Windows::Forms::TextBox^ textBox;
 	private: System::Windows::Forms::RichTextBox^ richTextBox2;
 	private: System::Windows::Forms::MenuStrip^ menuStrip1;
-	private: System::Windows::Forms::ToolStripMenuItem^ проПрограмуToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^ AboutProgramToolStripMenuItem;
+
 
 	private:
-		/// <summary>
-		/// Обязательная переменная конструктора.
-		/// </summary>
+		
 		System::ComponentModel::Container ^components;
 
 #pragma region Windows Form Designer generated code
-		/// <summary>
-		/// Требуемый метод для поддержки конструктора — не изменяйте 
-		/// содержимое этого метода с помощью редактора кода.
-		/// </summary>
+		
 		void InitializeComponent(void)
 		{
-			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->buttonGenerate = (gcnew System::Windows::Forms::Button());
 			this->richTextBox1 = (gcnew System::Windows::Forms::RichTextBox());
 			this->labelEnter = (gcnew System::Windows::Forms::Label());
 			this->buttonFind = (gcnew System::Windows::Forms::Button());
 			this->textBox = (gcnew System::Windows::Forms::TextBox());
 			this->richTextBox2 = (gcnew System::Windows::Forms::RichTextBox());
 			this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
-			this->проПрограмуToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->AboutProgramToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->menuStrip1->SuspendLayout();
 			this->SuspendLayout();
 			// 
-			// button1
+			// buttonGenerate
 			// 
-			this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->buttonGenerate->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->button1->Location = System::Drawing::Point(103, 75);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(231, 108);
-			this->button1->TabIndex = 0;
-			this->button1->Text = L"Згенерувати масив елементів";
-			this->button1->UseVisualStyleBackColor = true;
-			this->button1->Click += gcnew System::EventHandler(this, &MyForm::button1_Click);
+			this->buttonGenerate->Location = System::Drawing::Point(103, 75);
+			this->buttonGenerate->Name = L"buttonGenerate";
+			this->buttonGenerate->Size = System::Drawing::Size(231, 108);
+			this->buttonGenerate->TabIndex = 0;
+			this->buttonGenerate->Text = L"Згенерувати масив елементів";
+			this->buttonGenerate->UseVisualStyleBackColor = true;
+			this->buttonGenerate->Click += gcnew System::EventHandler(this, &MyForm::buttonGenerate_Click);
 			// 
 			// richTextBox1
 			// 
@@ -139,19 +131,19 @@ namespace KURSOVANEW {
 			// menuStrip1
 			// 
 			this->menuStrip1->ImageScalingSize = System::Drawing::Size(20, 20);
-			this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->проПрограмуToolStripMenuItem });
+			this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->AboutProgramToolStripMenuItem });
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
 			this->menuStrip1->Name = L"menuStrip1";
 			this->menuStrip1->Size = System::Drawing::Size(936, 28);
 			this->menuStrip1->TabIndex = 21;
 			this->menuStrip1->Text = L"menuStrip1";
 			// 
-			// проПрограмуToolStripMenuItem
+			// AboutProgramToolStripMenuItem
 			// 
-			this->проПрограмуToolStripMenuItem->Name = L"проПрограмуToolStripMenuItem";
-			this->проПрограмуToolStripMenuItem->Size = System::Drawing::Size(122, 24);
-			this->проПрограмуToolStripMenuItem->Text = L"про програму";
-			this->проПрограмуToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::проПрограмуToolStripMenuItem_Click);
+			this->AboutProgramToolStripMenuItem->Name = L"AboutProgramToolStripMenuItem";
+			this->AboutProgramToolStripMenuItem->Size = System::Drawing::Size(122, 24);
+			this->AboutProgramToolStripMenuItem->Text = L"про програму";
+			this->AboutProgramToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::AboutProgramToolStripMenuItem_Click);
 			// 
 			// MyForm
 			// 
@@ -163,7 +155,7 @@ namespace KURSOVANEW {
 			this->Controls->Add(this->textBox);
 			this->Controls->Add(this->labelEnter);
 			this->Controls->Add(this->richTextBox1);
-			this->Controls->Add(this->button1);
+			this->Controls->Add(this->buttonGenerate);
 			this->Controls->Add(this->menuStrip1);
 			this->MainMenuStrip = this->menuStrip1;
 			this->Name = L"MyForm";
@@ -175,9 +167,9 @@ namespace KURSOVANEW {
 
 		}
 #pragma endregion
-	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void buttonGenerate_Click(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void buttonFind_Click(System::Object^ sender, System::EventArgs^ e);
-	private: System::Void проПрограмуToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void AboutProgramToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void richTextBox1_TextChanged(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void richTextBox2_TextChanged(System::Object^ sender, System::EventArgs^ e);
 };

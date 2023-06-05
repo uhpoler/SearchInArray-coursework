@@ -25,7 +25,7 @@ Search search;
 bool isButton1Clicked = false;
 
 //кнопка генерації масиву
-System::Void KURSOVANEW::MyForm::button1_Click(System::Object^ sender, System::EventArgs^ e)
+System::Void KURSOVANEW::MyForm::buttonGenerate_Click(System::Object^ sender, System::EventArgs^ e)
 {
 	isButton1Clicked = true;
 	richTextBox1->Clear();
@@ -92,7 +92,7 @@ System::Void KURSOVANEW::MyForm::buttonFind_Click(System::Object^ sender, System
 }
 
 //про програму
-System::Void KURSOVANEW::MyForm::проПрограмуToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
+System::Void KURSOVANEW::MyForm::AboutProgramToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
 {
 	MessageBox::Show("\tЦя програма здійснює пошук заданих елементів у масиві \n\t\tДля цього використовуються методи:\n\n -послідовний\n-Фібоначі\n -інтерполяційний\n -Хеш-функцій\n\n Виконала Скрипець Ольга ІП-21", "Інформація про програму");
 	return System::Void();
