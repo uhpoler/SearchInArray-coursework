@@ -4,7 +4,6 @@
 
 
 //функція послідовного пошуку
-
 int Search::sequentialSearch(int value, RichTextBox^ richTextBox) {
 
     for (int i = 0; i < arraySize; i++) {
@@ -27,9 +26,6 @@ int Search::sequentialSearch(int value, RichTextBox^ richTextBox) {
     }
 
 }
-
-
-
 
 //функція пошуку методом Фібоначі
 int Search::fibonacciSearch(int value, RichTextBox^ richTextBox) {
@@ -95,9 +91,6 @@ int Search::fibonacciSearch(int value, RichTextBox^ richTextBox) {
     return -1;
 }
 
-
-
-
 //функція пошуку інтерполяційним методом
 int Search::interpolationSearch(int value, RichTextBox^ richTextBox) {
     int low = 0;
@@ -107,30 +100,25 @@ int Search::interpolationSearch(int value, RichTextBox^ richTextBox) {
         //формула інтерполяції для знаходження наближеної позиції шуканого елемента
         int position = low + ((value - array[low]) * (high - low)) / (array[high] - array[low]);
 
-        richTextBox->SelectionStart = richTextBox->Text->IndexOf(array[low].ToString());
-        richTextBox->SelectionLength = array[high].ToString()->Length;
+        richTextBox->SelectionStart = richTextBox->Text->IndexOf(array[position].ToString());
+        richTextBox->SelectionLength = array[position].ToString()->Length;
         richTextBox->SelectionColor = System::Drawing::Color::Yellow;
-        richTextBox->Refresh();
         std::this_thread::sleep_for(std::chrono::seconds(1));
 
         if (array[position] == value) {
             richTextBox->SelectionStart = richTextBox->Text->IndexOf(array[position].ToString());
             richTextBox->SelectionLength = array[position].ToString()->Length;
             richTextBox->SelectionColor = System::Drawing::Color::Green;
-            richTextBox->Refresh();
-            std::this_thread::sleep_for(std::chrono::seconds(1));
 
             return position; 
         }
 
-
+        richTextBox->Refresh();
 
         if (array[position] < value) {
             richTextBox->SelectionStart = richTextBox->Text->IndexOf(array[position].ToString());
             richTextBox->SelectionLength = array[position].ToString()->Length;
             richTextBox->SelectionColor = System::Drawing::Color::Yellow;
-            richTextBox->Refresh();
-            std::this_thread::sleep_for(std::chrono::seconds(1));
 
             low = position + 1; 
         }
@@ -138,87 +126,34 @@ int Search::interpolationSearch(int value, RichTextBox^ richTextBox) {
             richTextBox->SelectionStart = richTextBox->Text->IndexOf(array[position].ToString());
             richTextBox->SelectionLength = array[position].ToString()->Length;
             richTextBox->SelectionColor = System::Drawing::Color::Yellow;
-            richTextBox->Refresh();
-            std::this_thread::sleep_for(std::chrono::seconds(1));
 
             high = position - 1; 
 
 
         }
+
+        richTextBox->Refresh();
        
     }
 
     return -1; 
 }
 
-/*
-//функція запису результатів до файлу
-void Search::writeToFile(const std::string& filename, int searchValue) {
-    std::ofstream file(filename, std::ios::app);
-
-    if (file.is_open()) {
-
-        int* arr = Search::GetArray();
-        // Записуємо елементи масиву у файл
-        for (int i = 0; i < GetArraySize(); i++) {
-            file << arr[i] << " ";
-        }
-
-
-        // Виконуємо пошук і записуємо результати у файл
-        int resultSequential = sequentialSearch(searchValue);
-        int resultFibonacci = fibonacciSearch(searchValue);
-        int resultInterpolation = interpolationSearch(searchValue);
-        int resultHash = hashSearch(searchValue, arr);
-
-        file << "\n\nРезультат пошуку числа " << searchValue << " різними методами: \n" << std::endl;
-
-        file << "Послідовний метод: " << resultSequential << std::endl;
-        file << "Метод Фібоначчі: " << resultFibonacci << std::endl;
-        file << "Інтерполяційний метод: " << resultInterpolation << std::endl;
-        file << "Метод Хеш-функції: " << resultHash << "\n" << std::endl;
-
-
-
-        file.close();
-        MessageBox::Show("Результати збережено у файлі results.txt");
-
-
-    }
-    else {
-        MessageBox::Show("Помилка при відкритті файлу results.txt", "Помилка");
-    }
-
-}
-*/
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
 
 //функція пошуку елементу за допомогою Хеш-функції
-int Search::hashSearch(int key, int* array, RichTextBox^ richTextBox) {
+int Search::hashSearch(int key, int* array) {
     Hashing hashTable(10); // Створення хеш-таблиці з 10 блоків
     int index = 0;
     // Додавання елементів до хеш-таблиці
     for (int i = 0; i < arraySize; i++) {
-        hashTable.insertKey(array[i], i, richTextBox);
+        hashTable.insertKey(array[i], i);
 
         // Пошук числа в хеш-таблиці
-        index = hashTable.searchKey(key, array, richTextBox);
+        index = hashTable.searchKey(key, array);
     }
-
 
     return index;
 }
@@ -230,7 +165,7 @@ Hashing::Hashing(int b) {
 }
 
 //функція, яка додає ключ до хеш-таблиці
-void Hashing::insertKey(int key, int value, RichTextBox^ richTextBox) {
+void Hashing::insertKey(int key, int value) {
     int index = hashFunction(key);
     hashTable[index].push_back(value);
 }
@@ -241,27 +176,19 @@ int Hashing::hashFunction(int x) {
 }
 
 // Пошук числа в хеш-таблиці
-int Hashing::searchKey(int key, int* arr, RichTextBox^ richTextBox) {
+int Hashing::searchKey(int key, int* arr) {
     int index = hashFunction(key);
     std::list<int>::iterator it;
 
     for (it = hashTable[index].begin(); it != hashTable[index].end(); it++) {
-        richTextBox->SelectionStart = richTextBox->Text->IndexOf(arr[*it].ToString());
-        richTextBox->SelectionLength = arr[*it].ToString()->Length;
-        richTextBox->SelectionColor = System::Drawing::Color::Yellow;
-        richTextBox->Refresh(); 
-       // std::this_thread::sleep_for(std::chrono::seconds(1));
 
         if (key == arr[*it])
         {
-
-            richTextBox->SelectionStart = richTextBox->Text->IndexOf(arr[index].ToString());
-            richTextBox->SelectionLength = array[*it].ToString()->Length;
-            richTextBox->SelectionColor = System::Drawing::Color::Green;
-            richTextBox->Refresh();
+            
 
             return *it;
         }
+
     }
 
     return -1;

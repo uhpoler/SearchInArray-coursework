@@ -45,48 +45,19 @@ System::Void KURSOVANEW::MyForm::buttonGenerate_Click(System::Object^ sender, Sy
 	return System::Void();
 }
 
-//кнопка пошуку значень, які ввів користувач
+//кнопка запису результатів у файл
 System::Void KURSOVANEW::MyForm::buttonWriteToFile_Click(System::Object^ sender, System::EventArgs^ e)
 {
-
-
 	if (!isButton1Clicked){
 		MessageBox::Show("Помилка: Спочатку згенеруйте масив!");
 		return;
 	}
 
-
-	String^ input = textBox->Text;
-	int searchValue = Convert::ToInt32(input);
-
-	//запис у файл
-	//search.writeToFile("result.txt", searchValue);
+	System::IO::File::AppendAllText("results.txt", "\n"+ richTextBox1->Text + "\n" + richTextBox2->Text);
+	MessageBox::Show("Результати збережено у файлі results.txt");
 
 	richTextBox2->Clear();
 	
-
-
-	return System::Void();
-}
-
-//про програму
-System::Void KURSOVANEW::MyForm::AboutProgramToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
-{
-	MessageBox::Show("\tЦя програма здійснює пошук заданих елементів у масиві \n\t\tДля цього використовуються методи:\n\n -послідовний\n-Фібоначі\n -інтерполяційний\n -Хеш-функцій\n\n Виконала Скрипець Ольга ІП-21", "Інформація про програму");
-	return System::Void();
-}
-
-//вимкнення можливість введення тексту в richTextBox1
-System::Void KURSOVANEW::MyForm::richTextBox1_TextChanged(System::Object^ sender, System::EventArgs^ e)
-{
-	richTextBox1->ReadOnly = true;
-	return System::Void();
-}
-
-//вимкнення можливість введення тексту в richTextBox2
-System::Void KURSOVANEW::MyForm::richTextBox2_TextChanged(System::Object^ sender, System::EventArgs^ e)
-{
-	richTextBox2->ReadOnly = true;
 	return System::Void();
 }
 
@@ -94,9 +65,7 @@ System::Void KURSOVANEW::MyForm::richTextBox2_TextChanged(System::Object^ sender
 
 
 
-
-
-
+//Послідовний метод
 System::Void KURSOVANEW::MyForm::buttonSequential_Click(System::Object^ sender, System::EventArgs^ e)
 {
 
@@ -128,7 +97,7 @@ System::Void KURSOVANEW::MyForm::buttonSequential_Click(System::Object^ sender, 
 			int resultSequential = search.sequentialSearch(searchValue, richTextBox1);
 
 			//вивід результатів
-			richTextBox2->Text += "Результат пошуку числа " + input + " різними методами: \n\n";
+			richTextBox2->Text += "Результат пошуку числа " + input + " \n\n";
 			richTextBox2->Text += "Послідовний метод: " + System::Convert::ToString(resultSequential) + "\n";
 
 		
@@ -140,6 +109,7 @@ System::Void KURSOVANEW::MyForm::buttonSequential_Click(System::Object^ sender, 
 	return System::Void();
 }
 
+//Метод інтерполяційного пошуку
 System::Void KURSOVANEW::MyForm::buttonInterpolation_Click(System::Object^ sender, System::EventArgs^ e)
 {
 
@@ -170,7 +140,7 @@ System::Void KURSOVANEW::MyForm::buttonInterpolation_Click(System::Object^ sende
 
 
 			//вивід результатів
-			richTextBox2->Text += "Результат пошуку числа " + input + " різними методами: \n\n";
+			richTextBox2->Text += "Результат пошуку числа " + input + " \n\n";
 			richTextBox2->Text += "Інтерполяційний метод: " + System::Convert::ToString(resultInterpolation) + "\n";
 
 
@@ -179,6 +149,7 @@ System::Void KURSOVANEW::MyForm::buttonInterpolation_Click(System::Object^ sende
 	return System::Void();
 }
 
+//Пошук методом Фібоначчі
 System::Void KURSOVANEW::MyForm::buttonFibonacci_Click(System::Object^ sender, System::EventArgs^ e)
 {
 
@@ -209,7 +180,7 @@ System::Void KURSOVANEW::MyForm::buttonFibonacci_Click(System::Object^ sender, S
 			int resultFibonacci = search.fibonacciSearch(searchValue, richTextBox1);
 
 			//вивід результатів
-			richTextBox2->Text += "Результат пошуку числа " + input + " різними методами: \n\n";
+			richTextBox2->Text += "Результат пошуку числа " + input + " \n\n";
 			richTextBox2->Text += "Метод Фібоначчі: " + System::Convert::ToString(resultFibonacci) + "\n";
 
 
@@ -218,6 +189,7 @@ System::Void KURSOVANEW::MyForm::buttonFibonacci_Click(System::Object^ sender, S
 	return System::Void();
 }
 
+//Пошук методом Хеш-функції
 System::Void KURSOVANEW::MyForm::buttonHash_Click(System::Object^ sender, System::EventArgs^ e)
 {
 
@@ -247,7 +219,7 @@ System::Void KURSOVANEW::MyForm::buttonHash_Click(System::Object^ sender, System
 			int resultHash = search.hashSearch(searchValue, search.GetArray(), richTextBox1);
 
 			//вивід результатів
-			richTextBox2->Text += "Результат пошуку числа " + input + " різними методами: \n\n";
+			richTextBox2->Text += "Результат пошуку числа " + input + " \n\n";
 			richTextBox2->Text += "Метод Хеш-функції: " + System::Convert::ToString(resultHash) + "\n\n";
 
 
@@ -256,6 +228,33 @@ System::Void KURSOVANEW::MyForm::buttonHash_Click(System::Object^ sender, System
 	return System::Void();
 }
 
+
+
+
+
+
+//про програму
+System::Void KURSOVANEW::MyForm::AboutProgramToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
+{
+	MessageBox::Show("\tЦя програма здійснює пошук заданих елементів у масиві \n\t\tДля цього використовуються методи:\n\n -послідовний\n-Фібоначі\n -інтерполяційний\n -Хеш-функцій\n\n Виконала Скрипець Ольга ІП-21", "Інформація про програму");
+	return System::Void();
+}
+
+//вимкнення можливість введення тексту в richTextBox1
+System::Void KURSOVANEW::MyForm::richTextBox1_TextChanged(System::Object^ sender, System::EventArgs^ e)
+{
+	richTextBox1->ReadOnly = true;
+	return System::Void();
+}
+
+//вимкнення можливість введення тексту в richTextBox2
+System::Void KURSOVANEW::MyForm::richTextBox2_TextChanged(System::Object^ sender, System::EventArgs^ e)
+{
+	richTextBox2->ReadOnly = true;
+	return System::Void();
+}
+
+//очищення вводу
 System::Void KURSOVANEW::MyForm::textBox_TextChanged(System::Object^ sender, System::EventArgs^ e)
 {
 

@@ -8,8 +8,6 @@
 #include <msclr/marshal_cppstd.h>
 #include <unordered_map>
 #include <windows.h>
-
-#include <string>
 #include <sstream>
 #include <ctime>
 #include <chrono>
@@ -34,12 +32,12 @@ public:
     int sequentialSearch(int value, RichTextBox^ richTextBox1);
     int fibonacciSearch(int value, RichTextBox^ richTextBox);
     int interpolationSearch( int value, RichTextBox^ richTextBox);
-    int hashSearch(int value, int* array, RichTextBox^ richTextBox);
+    int hashSearch(int value, int* array);
 
     static const int GetArraySize() { return arraySize; }
     int* GetArray() { return array; }
     
-    void writeToFile(const std::string& filename, int searchValue);
+
 };
 
 
@@ -48,9 +46,9 @@ class Hashing : public Search {
     std::list<int>* hashTable;
 public:
     Hashing(int V);
-    void insertKey(int key, int value, RichTextBox^ richTextBox);
+    void insertKey(int key, int value);
     int hashFunction(int x);
-    int searchKey(int key, int* array, RichTextBox^ richTextBox);
+    int searchKey(int key, int* array);
 };
 
 
