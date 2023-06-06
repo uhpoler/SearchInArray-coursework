@@ -45,23 +45,6 @@ System::Void KURSOVANEW::MyForm::buttonGenerate_Click(System::Object^ sender, Sy
 	return System::Void();
 }
 
-//кнопка запису результатів у файл
-System::Void KURSOVANEW::MyForm::buttonWriteToFile_Click(System::Object^ sender, System::EventArgs^ e)
-{
-	if (!isButton1Clicked){
-		MessageBox::Show("Помилка: Спочатку згенеруйте масив!");
-		return;
-	}
-
-	System::IO::File::AppendAllText("results.txt", "\n"+ richTextBox1->Text + "\n" + richTextBox2->Text);
-	MessageBox::Show("Результати збережено у файлі results.txt");
-
-	richTextBox2->Clear();
-	
-	return System::Void();
-}
-
-
 
 
 
@@ -233,6 +216,22 @@ System::Void KURSOVANEW::MyForm::buttonHash_Click(System::Object^ sender, System
 
 
 
+
+//кнопка запису результатів у файл
+System::Void KURSOVANEW::MyForm::buttonWriteToFile_Click(System::Object^ sender, System::EventArgs^ e)
+{
+	if (!isButton1Clicked) {
+		MessageBox::Show("Помилка: Спочатку згенеруйте масив!");
+		return;
+	}
+
+	System::IO::File::AppendAllText("results.txt", "\n" + richTextBox1->Text + "\n" + richTextBox2->Text);
+	MessageBox::Show("Результати збережено у файлі results.txt");
+
+	richTextBox2->Clear();
+
+	return System::Void();
+}
 
 
 

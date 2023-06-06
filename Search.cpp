@@ -1,5 +1,5 @@
 #include "Search.h"
-#include "AdditionalFunctions.h"
+
 
 
 
@@ -24,7 +24,7 @@ int Search::sequentialSearch(int value, RichTextBox^ richTextBox) {
             std::this_thread::sleep_for(std::chrono::seconds(1));
         }
 
-        richTextBox->Refresh(); // Оновлення richTextBox1
+        richTextBox->Refresh(); 
     }
 
 }
@@ -141,16 +141,6 @@ int Search::interpolationSearch(int value, RichTextBox^ richTextBox) {
     return -1; 
 }
 
-// Функція для визначення найбільшого ключа
-int Search::getMaxKey() {
-    int maxKey = array[0];
-    for (int i = 1; i < arraySize; i++) {
-        if (array[i] > maxKey) {
-            maxKey = array[i];
-        }
-    }
-    return maxKey;
-}
 
 
 /*
@@ -166,7 +156,7 @@ int Search::hashSearch(int key, int* array, RichTextBox^ richTextBox) {
 
     //index = hashTable.searchKey(key, array, richTextBox);
     // Виведення хеш-таблиці з виділенням елементів
-    hashTable.PrintHashTable(richTextBox, key);
+    hashTable.printHashTable(richTextBox, key);
 
 
     return index;
@@ -174,18 +164,17 @@ int Search::hashSearch(int key, int* array, RichTextBox^ richTextBox) {
 */
 
 int Search::hashSearch(int key, int* array, RichTextBox^ richTextBox) {
-   // int maxKey = getMaxKey();
     Hashing* hashTable = new Hashing(500); // Создание объекта Hashing на куче
     int index = 0;
 
     // Добавление элементов в хеш-таблицу
     for (int i = 0; i < arraySize; i++) {
         hashTable->insertKey(array[i], i);
-        index = hashTable->searchKey(key, array, richTextBox);
+        index = hashTable->searchKey(key, array);
     }
 
     // Вывод хеш-таблицы с выделением элементов
-    hashTable->PrintHashTable(richTextBox, key);
+    hashTable->printHashTable(richTextBox, key);
 
     delete hashTable; // Освобождение памяти, выделенной под объект Hashing
 
@@ -216,7 +205,7 @@ int Hashing::hashFunction(int x) {
 }
 
 // Пошук числа в хеш-таблиці
-int Hashing::searchKey(int key, int* arr, RichTextBox^ richTextBox) {
+int Hashing::searchKey(int key, int* arr) {
     int index = hashFunction(key);
 
     std::list<int>::iterator it;
@@ -237,7 +226,7 @@ int Hashing::searchKey(int key, int* arr, RichTextBox^ richTextBox) {
 
 
 // Виведення хеш-таблиці в richTextBox
-void Hashing::PrintHashTable(RichTextBox^ richTextBox, int key) {
+void Hashing::printHashTable(RichTextBox^ richTextBox, int key) {
     richTextBox->Clear();
     System::Drawing::Color lightBlueColor = System::Drawing::Color::FromArgb(135, 206, 250);
 

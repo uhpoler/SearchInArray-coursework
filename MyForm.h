@@ -28,29 +28,25 @@ namespace KURSOVANEW {
 				delete components;
 			}
 		}
+	
+
 	private: System::Windows::Forms::Button^ buttonGenerate;
-	protected:
-
-	protected:
-	private: System::Windows::Forms::RichTextBox^ richTextBox1;
-	private: System::Windows::Forms::Label^ labelEnter;
 	private: System::Windows::Forms::Button^ buttonWriteToFile;
-
-	private: System::Windows::Forms::TextBox^ textBox;
-	private: System::Windows::Forms::RichTextBox^ richTextBox2;
-	private: System::Windows::Forms::MenuStrip^ menuStrip1;
-	private: System::Windows::Forms::ToolStripMenuItem^ AboutProgramToolStripMenuItem;
 	private: System::Windows::Forms::Button^ buttonSequential;
 	private: System::Windows::Forms::Button^ buttonFibonacci;
 	private: System::Windows::Forms::Button^ buttonInterpolation;
 	private: System::Windows::Forms::Button^ buttonHash;
-	private: System::Windows::Forms::RichTextBox^ richTextBox3;
 
+	private: System::Windows::Forms::Label^ labelEnter;
 	private: System::Windows::Forms::Label^ labelTable;
 
+	private: System::Windows::Forms::RichTextBox^ richTextBox1;
+	private: System::Windows::Forms::RichTextBox^ richTextBox2;
+	private: System::Windows::Forms::RichTextBox^ richTextBox3;
 
-
-
+	private: System::Windows::Forms::TextBox^ textBox;
+	private: System::Windows::Forms::MenuStrip^ menuStrip1;
+	private: System::Windows::Forms::ToolStripMenuItem^ AboutProgramToolStripMenuItem;
 
 
 
@@ -281,17 +277,22 @@ namespace KURSOVANEW {
 
 		}
 #pragma endregion
+
+
 	private: System::Void buttonGenerate_Click(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void buttonWriteToFile_Click(System::Object^ sender, System::EventArgs^ e);
-	private: System::Void AboutProgramToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
-	private: System::Void richTextBox1_TextChanged(System::Object^ sender, System::EventArgs^ e);
-	private: System::Void richTextBox2_TextChanged(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void buttonSequential_Click(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void buttonInterpolation_Click(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void buttonFibonacci_Click(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void buttonHash_Click(System::Object^ sender, System::EventArgs^ e);
-	private: System::Void textBox_TextChanged(System::Object^ sender, System::EventArgs^ e);
+
+	private: System::Void richTextBox1_TextChanged(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void richTextBox2_TextChanged(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void richTextBox3_TextChanged(System::Object^ sender, System::EventArgs^ e);
+
+	private: System::Void textBox_TextChanged(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void AboutProgramToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
+
 };
 
 

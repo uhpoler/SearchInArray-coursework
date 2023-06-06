@@ -33,7 +33,7 @@ public:
     int fibonacciSearch(int value, RichTextBox^ richTextBox);
     int interpolationSearch( int value, RichTextBox^ richTextBox);
     int hashSearch(int value, int* array, RichTextBox^ richTextBox);
-    int getMaxKey();
+   
 
     static const int GetArraySize() { return arraySize; }
     int* GetArray() { return array; }
@@ -49,13 +49,9 @@ public:
     Hashing(int V);
     void insertKey(int key, int value);
     int hashFunction(int x);
-    int searchKey(int key, int* array, RichTextBox^ richTextBox);
+    int searchKey(int key, int* array);
    
-
-    int GetHashBucket() const { return hashBucket; }
-    std::list<int>* GetHashTable() { return  hashTable; };
-
-    void PrintHashTable( System::Windows::Forms::RichTextBox^ richTextBox, int searchKey);
+    void printHashTable(RichTextBox^ richTextBox, int searchKey);
 };
 
 
