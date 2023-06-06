@@ -215,8 +215,11 @@ System::Void KURSOVANEW::MyForm::buttonHash_Click(System::Object^ sender, System
 		}
 		else {
 
+			
+
 			//пошук числа в масиві
-			int resultHash = search.hashSearch(searchValue, search.GetArray(), richTextBox1);
+			int resultHash = search.hashSearch(searchValue, search.GetArray(), richTextBox3);
+
 
 			//вивід результатів
 			richTextBox2->Text += "Результат пошуку числа " + input + " \n\n";
@@ -254,6 +257,13 @@ System::Void KURSOVANEW::MyForm::richTextBox2_TextChanged(System::Object^ sender
 	return System::Void();
 }
 
+//вимкнення можливість введення тексту в richTextBox3
+System::Void KURSOVANEW::MyForm::richTextBox3_TextChanged(System::Object^ sender, System::EventArgs^ e)
+{
+	richTextBox3->ReadOnly = true;
+	return System::Void();
+}
+
 //очищення вводу
 System::Void KURSOVANEW::MyForm::textBox_TextChanged(System::Object^ sender, System::EventArgs^ e)
 {
@@ -261,6 +271,7 @@ System::Void KURSOVANEW::MyForm::textBox_TextChanged(System::Object^ sender, Sys
 	richTextBox2->Clear();
 	return System::Void();
 }
+
 
 
 

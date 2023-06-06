@@ -103,7 +103,9 @@ int checkValueInArray(Search& search, int searchValue) {
 
 //функція для очищення підсвітки цифр
 void clearHighlighting(System::Windows::Forms::RichTextBox^ richTextBox) {
+	System::Drawing::Color lightBlueColor = System::Drawing::Color::FromArgb(135, 206, 250);
+
 	richTextBox->SelectionStart = 0;
 	richTextBox->SelectionLength = richTextBox->Text->Length;
-	richTextBox->SelectionColor = System::Drawing::Color::Black;
+	richTextBox->SelectionBackColor = lightBlueColor;
 }
