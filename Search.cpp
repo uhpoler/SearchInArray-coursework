@@ -143,7 +143,7 @@ int Search::interpolationSearch(int value, RichTextBox^ richTextBox) {
 
 
 
-/*
+
 //функція пошуку елементу за допомогою Хеш-функції
 int Search::hashSearch(int key, int* array, RichTextBox^ richTextBox) {
     Hashing hashTable(1000); // Створення хеш-таблиці з 1000 блоків
@@ -151,37 +151,15 @@ int Search::hashSearch(int key, int* array, RichTextBox^ richTextBox) {
     // Додавання елементів до хеш-таблиці
     for (int i = 0; i < arraySize; i++) {
         hashTable.insertKey(array[i], i);
-        index = hashTable.searchKey(key, array, richTextBox);
+        index = hashTable.searchKey(key, array);
     }
 
-    //index = hashTable.searchKey(key, array, richTextBox);
     // Виведення хеш-таблиці з виділенням елементів
-    hashTable.printHashTable(richTextBox, key);
+    hashTable.printHashTable(richTextBox, key, array);
 
 
     return index;
 }
-*/
-
-int Search::hashSearch(int key, int* array, RichTextBox^ richTextBox) {
-    Hashing* hashTable = new Hashing(500); // Создание объекта Hashing на куче
-    int index = 0;
-
-    // Добавление элементов в хеш-таблицу
-    for (int i = 0; i < arraySize; i++) {
-        hashTable->insertKey(array[i], i);
-        index = hashTable->searchKey(key, array);
-    }
-
-    // Вывод хеш-таблицы с выделением элементов
-    hashTable->printHashTable(richTextBox, key);
-
-    delete hashTable; // Освобождение памяти, выделенной под объект Hashing
-
-    return index;
-}
-
-
 
 
 
@@ -226,7 +204,7 @@ int Hashing::searchKey(int key, int* arr) {
 
 
 // Виведення хеш-таблиці в richTextBox
-void Hashing::printHashTable(RichTextBox^ richTextBox, int key) {
+void Hashing::printHashTable(RichTextBox^ richTextBox, int key, int* arr) {
     richTextBox->Clear();
     System::Drawing::Color lightBlueColor = System::Drawing::Color::FromArgb(135, 206, 250);
 
@@ -236,7 +214,7 @@ void Hashing::printHashTable(RichTextBox^ richTextBox, int key) {
 
      
         for (auto it = bucket.begin(); it != bucket.end(); ++it) {
-            if (*it == key) {
+            if (arr[*it] == key) {
                 int startIndex = richTextBox->TextLength; 
                 int length = System::Convert::ToString(*it)->Length; 
 

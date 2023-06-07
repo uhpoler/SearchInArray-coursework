@@ -51,7 +51,7 @@ public:
     int hashFunction(int x);
     int searchKey(int key, int* array);
    
-    void printHashTable(RichTextBox^ richTextBox, int searchKey);
+    void printHashTable(RichTextBox^ richTextBox, int searchKey, int* array);
 };
 
 
