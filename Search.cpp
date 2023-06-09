@@ -39,6 +39,8 @@ int Search::fibonacciSearch(int value, RichTextBox^ richTextBox) {
         fib2 = fib1;
         fib1 = fib;
         fib = fib1 + fib2;
+
+
     }
 
     int offset = -1;
