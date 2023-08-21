@@ -1,0 +1,2 @@
+# courseWork
+This is my course work for the second semester of the first year in KPI , in which I implemented the search for given elements in the array. There is a random number generator here, and the search is performed using the sequential, interpolation Fibonacci method or the hash function. And also added illumination of each number to clearly demonstrate the operation of the program. The work is done in C++ language and Winforms are used
